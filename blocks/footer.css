@@ -1,9 +1,15 @@
 .footer {
     display: flex;
+    color: #212121;
+    top: 1340px;
+    left: 668px;
+    width: 105px;
     align-items: center;
     justify-content: center;
+    font-weight: 400;
     font-size: 16px;
     line-height: 16px;
     max-width: 1280px;
     margin: 0 auto;
+    opacity: 70%;
 }
