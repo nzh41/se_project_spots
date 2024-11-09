@@ -1,9 +1,6 @@
-.footer {
+.footer__element {
     display: flex;
     color: #212121;
-    top: 1340px;
-    left: 668px;
-    width: 105px;
     align-items: center;
     justify-content: center;
     font-weight: 400;
