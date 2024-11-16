@@ -1,7 +1,5 @@
 .card {
     width: 413px;
-    gap: 20px;
-    padding: 20px;
 }
 
 .card__image {
@@ -17,6 +15,7 @@
     align-items: center;
     justify-content: space-between;
     line-height: 1.2;
+    margin-top: 12px;
 }
 
 .card__title {
@@ -39,7 +38,7 @@
     opacity: 40%;
 }
 
-@media screen and(max-width:627) {
+@media screen and(max-width:627px) {
     .card {
         width: 288px;
         color: #212121;
@@ -49,6 +48,7 @@
         height: 288px;
         object-fit: cover;
         display: block;
+        width: 288px;
     }
     .card__content {
         display: flex;
