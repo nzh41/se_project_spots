@@ -38,7 +38,7 @@
     opacity: 40%;
 }
 
-@media screen and(max-width:627px) {
+@media screen and (max-width: 627px) {
     .card {
         width: 288px;
         color: #212121;
