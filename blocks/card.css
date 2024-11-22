@@ -23,6 +23,7 @@
     width: 353px;
     margin: 0;
     white-space: nowrap;
+    border: none;
     overflow: hidden;
     font-size: 20px;
     font-weight: 500;
@@ -59,7 +60,6 @@
     .card__content {
         width: 288px;
         gap: 12px;
-        /*are the line-heights above and below the same to change media Query?*/
         line-height: 18px;
     }
 
@@ -67,14 +67,10 @@
         font-size: 16px;
         line-height: 19px;
         width: 288px;
-        /*is there a border on the original card__title?*/
-        border: none;
     }
 
     .card__like-btn {
         width: 20px;
         height: 18px;
-        /*do we change the border for the size?*/
-        border: none;
     }
 }

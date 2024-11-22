@@ -15,8 +15,6 @@
 .profile__column {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    /*added the flex wrap for wrapping size when changing sizes*/
     width: 420px;
 }
 
@@ -66,12 +64,12 @@
     height: 16px;
     gap: 8px;
     opacity: 70%;
-    cursor: pointer;
     border: none;
 }
 
 .profile__edit-btn:hover {
     opacity: 1;
+    cursor: pointer;
 }
 
 .profile__add-btn {
@@ -93,13 +91,13 @@
     gap: 8px;
     background-color: #212121;
     align-self: end;
-    cursor: pointer;
     color: #fcf5e5;
-    opacity: 80%;
+    opacity: 1;
 }
 
 .profile__add-btn:hover {
-    opacity: 1;
+    opacity: 80%;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 689px) {
@@ -122,8 +120,8 @@
 
     .profile__name {
         font-size: 20px;
-        /*width: 288px;
-        line-height: 20px;*/
+        width: 288px;
+        line-height: 20px;
         text-align: center;
         margin: 0 0 6px;
     }
@@ -131,7 +129,6 @@
     .profile__description {
         margin: 0 0 32px;
         width: 288px;
-        gap: 20px;
     }
 
     .profile__column {
@@ -139,16 +136,12 @@
         align-items: center;
     }
 
-    .profile__edit-btn {
-        width: 107.34px;
-        border-radius: 90px;
-    }
+    /*.profile__edit-btn {
+    }*/
 
     .profile__add-btn {
         margin: 0;
         width: 100%;
-        height: 52px;
-        /*padding: 18px 32px;*/
     }
 }
 
