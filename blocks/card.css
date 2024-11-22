@@ -20,6 +20,7 @@
 
 .card__title {
     text-overflow: ellipsis;
+    width: 353px;
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -36,50 +37,44 @@
     border: none;
     background-color: transparent;
     opacity: 40%;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+    background-repeat: no-repeat;
 }
 
-@media screen and (max-width: 627px) {
+.card__like-btn:hover {
+    opacity: 1;
+}
+
+@media screen and (max-width: 689px) {
     .card {
         width: 288px;
-        color: #212121;
     }
 
     .card__image {
         height: 288px;
-        object-fit: cover;
-        display: block;
         width: 288px;
     }
     .card__content {
-        display: flex;
         width: 288px;
         gap: 12px;
-        align-items: center;
-        justify-content: space-between;
+        /*are the line-heights above and below the same to change media Query?*/
         line-height: 18px;
     }
 
     .card__title {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        font-weight: 500;
         font-size: 16px;
-        line-height: 16px;
+        line-height: 19px;
         width: 288px;
-        margin: 0;
+        /*is there a border on the original card__title?*/
         border: none;
     }
 
     .card__like-btn {
-        background-image: url(../images/Union.svg);
         width: 20px;
         height: 18px;
+        /*do we change the border for the size?*/
         border: none;
-        background-color: transparent;
-        opacity: 40%;
-        padding-right: 20px;
-        padding-bottom: 20px;
-        background-repeat: no-repeat;
     }
 }
