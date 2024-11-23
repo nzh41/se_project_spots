@@ -58,6 +58,7 @@
     .card__content {
         width: 288px;
         line-height: 18px;
+        box-sizing: border-box;
     }
 
     .card__title {
@@ -67,9 +68,11 @@
     }
 
     .card__like-btn {
-        width: 20px;
-        contain: none;
+        contain: content;
         background-repeat: no-repeat;
-        height: 18px;
+        background {
+            width: 20px;
+            height: 18px;
+        }
     }
 }
