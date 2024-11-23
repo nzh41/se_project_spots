@@ -23,7 +23,6 @@
     width: 353px;
     margin: 0;
     white-space: nowrap;
-    border: none;
     overflow: hidden;
     font-size: 20px;
     font-weight: 500;
@@ -38,8 +37,7 @@
     border: none;
     background-color: transparent;
     opacity: 40%;
-    padding-right: 20px;
-    padding-bottom: 20px;
+    padding: 0;
     cursor: pointer;
     background-repeat: no-repeat;
 }
@@ -59,18 +57,19 @@
     }
     .card__content {
         width: 288px;
-        gap: 12px;
         line-height: 18px;
     }
 
     .card__title {
         font-size: 16px;
-        line-height: 19px;
-        width: 288px;
+        line-height: 16px;
+        width: 95px;
     }
 
     .card__like-btn {
         width: 20px;
+        contain: none;
+        background-repeat: no-repeat;
         height: 18px;
     }
 }
