@@ -57,22 +57,17 @@
     }
     .card__content {
         width: 288px;
-        line-height: 18px;
         box-sizing: border-box;
     }
 
     .card__title {
         font-size: 16px;
         line-height: 16px;
-        width: 95px;
+        width: 100px;
     }
 
     .card__like-btn {
-        contain: content;
         background-repeat: no-repeat;
-        background {
-            width: 20px;
-            height: 18px;
-        }
+        background-size: 20px 18px;
     }
 }
