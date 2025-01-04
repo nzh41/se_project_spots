@@ -1,0 +1,113 @@
+.modal {
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    color: #212121;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    /*visibility: hidden;*/
+}
+
+.modal_opened {
+    visibility: visible;
+}
+
+.modal__container {
+    background-color: #ffffff;
+    max-width: 730px;
+    width: 100%;
+    position: relative;
+    padding: 32px 50px;
+    box-sizing: border-box;
+    gap: 32px;
+}
+
+.modal__close-btn {
+    background-color: #ffffff;
+    border: none;
+    position: absolute;
+    top: 32px;
+    right: 50px;
+    width: 40px;
+    height: 40px;
+    opacity: 40%;
+}
+
+.close__image {
+    width: 22.63px;
+    height: 22.63px;
+    top: 20.49px;
+    left: 4.49px;
+    border: 2px;
+    color: #212121;
+}
+
+.modal__title {
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 32px;
+    width: 169px;
+    margin: 0 0 32px;
+}
+
+.modal__label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+    gap: 8px;
+    color: #212121;
+    opacity: 70%;
+}
+
+.modal__input {
+    padding: 16px 12px 16px 12px;
+    gap: 10px;
+    opacity: 100%;
+    border-radius: 8px;
+    border: 1px solid rgba(33, 33, 33, 40%);
+}
+
+.modal__submit-btn {
+    width: 156px;
+    padding: 18px 0;
+    color: #fcf5e5;
+    font-size: 16px;
+    line-height: 16px;
+    background-color: #212121;
+    border-radius: 8px;
+}
+
+@media screen and (max-width: 627px) {
+    .modal {
+        padding: 0 10px;
+    }
+    .modal__container {
+        padding: 12px;
+    }
+
+    .modal__title {
+        font-size: 20px;
+        line-height: 20px;
+        margin: 10px 0 34px;
+    }
+
+    .modal__close-btn {
+        top: 12px;
+        right: 12px;
+    }
+    .modal__label {
+        margin-bottom: 24px;
+    }
+
+    .modal__submit-btn {
+        width: 100%;
+    }
+}
