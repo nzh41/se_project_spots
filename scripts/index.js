@@ -43,6 +43,22 @@ const editModalDescriptionInput = document.querySelector(
     "#profile-description-input"
 );
 
+const cardTemplate = document.querySelector("#card-template");
+const cardsList = document.querySelector(".card__list");
+function getCardElement(data) {
+    console.log(data);
+    const cardElement = cardTemplate.content
+        .querySelector(".card")
+        .cloneNode(true);
+
+    const cardNameEl = cardElement.querySelector(".card__title");
+    const cardImgEl = cardElement.querySelector("card__image");
+
+    cardNameEl.textContent = data.name;
+    cardImgEl.src = "./images/1-photo-by-moritz-feldmann-from-pexels.jpg";
+    return cardElement;
+}
+
 function openModal() {
     editModalNameInput.value = profileName.textContent;
     editModalDescriptionInput.value = profileDescription.textContent;
@@ -65,3 +81,8 @@ profileEditButton.addEventListener("click", openModal);
 editModalCloseBtn.addEventListener("click", closeModal);
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
+
+for (let i = 0; i < initialCards.length; i++) {
+    const cardElement = getCardElement(initialCards[i]);
+    cardsList.prepend(cardElement);
+}
