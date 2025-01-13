@@ -33,9 +33,9 @@ const profileDescription = document.querySelector(".profile__description");
 
 const editProfileModal = document.querySelector("#edit-modal");
 
-const editFormElement = document.querySelector(".Modal__form");
+const editFormElement = editProfileModal.querySelector(".modal__form");
 
-const editModalCloseBtn = document.querySelector(".modal__close-btn");
+const editModalCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 
 const editModalNameInput = document.querySelector("#profile-name-input");
 
@@ -44,7 +44,7 @@ const editModalDescriptionInput = document.querySelector(
 );
 
 const cardTemplate = document.querySelector("#card-template");
-const cardsList = document.querySelector(".card__list");
+const cardsList = document.querySelector(".cards__list");
 function getCardElement(data) {
     console.log(data);
     const cardElement = cardTemplate.content
@@ -55,7 +55,7 @@ function getCardElement(data) {
     const cardImgEl = cardElement.querySelector(".card__image");
 
     cardNameEl.textContent = data.name;
-    cardImgEl.src = "./images/1-photo-by-moritz-feldmann-from-pexels.jpg";
+    cardImgEl.src = data.link;
     return cardElement;
 }
 
@@ -82,7 +82,11 @@ editModalCloseBtn.addEventListener("click", closeModal);
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 
+// for (let i = 0; i < initialCards.length; i++) {
+//     const cardElement = getCardElement(initialCards[i]);
+//     cardsList.prepend(cardElement);
+// }
+
 for (let i = 0; i < initialCards.length; i++) {
-    const cardElement = getCardElement(initialCards[i]);
-    cardsList.prepend(cardElement);
+    cardsList.prepend(getCardElement(initialCards[i]));
 }
