@@ -52,7 +52,7 @@ function getCardElement(data) {
         .cloneNode(true);
 
     const cardNameEl = cardElement.querySelector(".card__title");
-    const cardImgEl = cardElement.querySelector("card__image");
+    const cardImgEl = cardElement.querySelector(".card__image");
 
     cardNameEl.textContent = data.name;
     cardImgEl.src = "./images/1-photo-by-moritz-feldmann-from-pexels.jpg";
