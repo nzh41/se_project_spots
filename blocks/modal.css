@@ -28,9 +28,11 @@
     padding: 32px 50px;
     box-sizing: border-box;
     gap: 32px;
+    border-radius: 8px;
 }
 
 .modal__close-btn {
+    cursor: pointer;
     background-color: #ffffff;
     border: none;
     position: absolute;
@@ -39,6 +41,10 @@
     width: 40px;
     height: 40px;
     opacity: 40%;
+}
+
+.modal__close-btn:hover {
+    opacity: 1;
 }
 
 .close__image {
@@ -70,12 +76,18 @@
 .modal__input {
     padding: 16px 12px 16px 12px;
     gap: 10px;
-    opacity: 100%;
+    opacity: 40%;
     border-radius: 8px;
     border: 1px solid rgba(33, 33, 33, 40%);
+    cursor: pointer;
+}
+
+.modal__input:hover {
+    opacity: 1;
 }
 
 .modal__submit-btn {
+    cursor: pointer;
     width: 156px;
     padding: 18px 0;
     color: #fcf5e5;
@@ -103,6 +115,7 @@
         top: 12px;
         right: 12px;
     }
+
     .modal__label {
         margin-bottom: 24px;
     }
