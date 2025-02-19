@@ -25,26 +25,34 @@ const initialCards = [
     },
 ];
 
-const profileEditButton = document.querySelector(".profile__edit-btn");
+const editModalBtn = document.querySelector(".profile__edit-btn");
+const cardModalBtn = document.querySelector(".profile__add-btn");
 
 const profileName = document.querySelector(".profile__name");
 
 const profileDescription = document.querySelector(".profile__description");
 
-const editProfileModal = document.querySelector("#edit-modal");
+const editModal = document.querySelector("#edit-modal");
 
-const editFormElement = editProfileModal.querySelector(".modal__form");
+const editFormElement = editModal.querySelector(".modal__form");
 
-const editModalCloseBtn = editProfileModal.querySelector(".modal__close-btn");
+const editModalCloseBtn = editModal.querySelector(".modal__close-btn");
 
-const editModalNameInput = document.querySelector("#profile-name-input");
+const editModalNameInput = editModal.querySelector("#profile-name-input");
 
-const editModalDescriptionInput = document.querySelector(
+const editModalDescriptionInput = editModal.querySelector(
     "#profile-description-input"
 );
 
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
+
+const cardFormElement = document.querySelector(".modal__form");
+const cardModal = document.querySelector("#add-card-modal");
+const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
+const cardNameInput = cardModal.querySelector("#add-card-name-input");
+const cardLinkInput = cardModal.querySelector("#add-card-link-input");
+
 function getCardElement(data) {
     console.log(data);
     const cardElement = cardTemplate.content
@@ -61,26 +69,51 @@ function getCardElement(data) {
     return cardElement;
 }
 
-function openModal() {
-    editModalNameInput.value = profileName.textContent;
-    editModalDescriptionInput.value = profileDescription.textContent;
-    editProfileModal.classList.add("modal_opened");
+function openModal(modal) {
+    // Refactored this code to the editModalBtn function with eventlistener
+    // editModalNameInput.value = profileName.textContent;
+    // editModalDescriptionInput.value = profileDescription.textContent;
+    modal.classList.add("modal_opened");
 }
 
-function closeModal() {
-    editProfileModal.classList.remove("modal_opened");
+function closeModal(modal) {
+    modal.classList.remove("modal_opened");
 }
 
 function handleEditFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = editModalNameInput.value;
     profileDescription.textContent = editModalDescriptionInput.value;
-    closeModal();
+    closeModal(editModal);
 }
 
-profileEditButton.addEventListener("click", openModal);
+function handleAddCardSubmit(evt) {
+    evt.preventDefault();
+    console.log(cardNameInput.value);
+    console.log(cardLinkInput.value);
+    const inputValue = { name: cardNameInput.value, link: cardLinkInput.value };
+    const CardEl = getcardElement(inputValue);
+    cardsList.append(CardEl);
+    closeModal(cardModal);
+}
 
-editModalCloseBtn.addEventListener("click", closeModal);
+editModalBtn.addEventListener("click", () => {
+    editModalNameInput.value = profileName.textContent;
+    editModalDescriptionInput.value = profileDescription.textContent;
+    openModal(editModal);
+});
+
+editModalCloseBtn.addEventListener("click", () => {
+    closeModal(editModal);
+});
+
+cardModalBtn.addEventListener("click", () => {
+    openModal(cardModal);
+});
+
+cardModalCloseBtn.addEventListener("click", () => {
+    closeModal(cardModal);
+});
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 
@@ -89,6 +122,12 @@ editFormElement.addEventListener("submit", handleEditFormSubmit);
 //     cardsList.prepend(cardElement);
 // }
 
-for (let i = 0; i < initialCards.length; i++) {
-    cardsList.prepend(getCardElement(initialCards[i]));
-}
+// for (let i = 0; i < initialCards.length; i++) {
+//     cardsList.prepend(getCardElement(initialCards[i]));
+// }
+
+cardFormElement.addEventListener("submit", handleAddCardSubmit);
+
+initialCards.forEach((item) => {
+    cardsList.prepend(getCardElement(item));
+});
