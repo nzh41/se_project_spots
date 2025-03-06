@@ -56,7 +56,7 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 const previewModalCloseBtn = previewModal.querySelector(
-    ".modal__close_type_preview"
+    ".modal__close-btn_type_preview"
 );
 
 function openModal(modal) {
@@ -82,8 +82,8 @@ function handleAddCardSubmit(evt) {
     console.log(cardNameInput.value);
     console.log(cardLinkInput.value);
     const inputValue = { name: cardNameInput.value, link: cardLinkInput.value };
-    const CardEl = getCardElement(inputValue);
-    cardsList.prepend(CardEl);
+    const cardEl = getCardElement(inputValue);
+    cardsList.prepend(cardEl);
     evt.target.reset();
     closeModal(cardModal);
 }
@@ -101,21 +101,17 @@ function getCardElement(data) {
     const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
 
     //declaring variable to keeping the button active in eventlistener below
-    const CardLikedBtn = cardElement.querySelector(".card__like-btn");
+    const cardLikedBtn = cardElement.querySelector(".card__like-btn");
     //Keeping the buttons active when clicking for Liked in the cards
-    CardLikedBtn.addEventListener("click", () => {
-        CardLikedBtn.classList.toggle("card__like-btn-liked");
+    cardLikedBtn.addEventListener("click", () => {
+        cardLikedBtn.classList.toggle("card__like-btn-liked");
     });
 
     cardImgEl.addEventListener("click", () => {
         openModal(previewModal);
         previewModalEl.src = data.link;
+        previewModalEl.alt = data.name;
         previewModalCaptionEl.textContent = data.name;
-        previewModalCaptionEl.alt = data.name;
-    });
-
-    previewModalCloseBtn.addEventListener("click", () => {
-        closeModal(previewModal);
     });
 
     //create a event as a paramater event.target.closest search card  .remove
@@ -129,6 +125,9 @@ function getCardElement(data) {
 
     return cardElement;
 }
+previewModalCloseBtn.addEventListener("click", () => {
+    closeModal(previewModal);
+});
 
 editModalBtn.addEventListener("click", () => {
     editModalNameInput.value = profileName.textContent;
