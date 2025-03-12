@@ -14,14 +14,16 @@
     justify-content: center;
     padding: 0 16px;
     visibility: hidden;
+    opacity: 0;
     transition: visibility 0.3s ease-in, opacity 0.3s ease-in;
-    transition-property: visibility, opacity;
     transition-duration: 0.3s, 0.3s;
     transition-timing-function: ease, ease-in;
+    z-index: 1000;
 }
 
 .modal_opened {
     visibility: visible;
+    opacity: 1;
 }
 
 .modal__container {
@@ -33,7 +35,7 @@
     box-sizing: border-box;
     gap: 32px;
     border-radius: 8px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .modal__content {
@@ -44,10 +46,14 @@
     position: relative;
     border-radius: 8px;
     background-color: transparent;
+    white-space: nowrap;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
 }
 
 .modal__content_type_preview {
     padding: 0;
+    visibility: 1;
 }
 
 .modal__image {
@@ -70,6 +76,7 @@
     height: 40px;
     opacity: 40%;
     cursor: pointer;
+    z-index: 1010;
 }
 
 .modal__close {
@@ -99,8 +106,9 @@
     border: none;
     position: absolute;
     opacity: 1;
-    z-index: 100;
+    z-index: 1010;
     cursor: pointer;
+    visibility: 1;
 }
 
 .modal__close_type-btn_preview:hover {
@@ -158,6 +166,7 @@
     color: #ffffff;
     background-color: #212121;
     text-align: center;
+    margin: 0;
 }
 
 .modal__input {
@@ -221,8 +230,24 @@
     }
     .modal__caption {
         height: 27px;
+        /* width: 100%; */
         font-size: 16px;
         align-items: center;
+        overflow: hidden; /* Hides the overflow text */
+        text-overflow: ellipsis; /* Adds the ellipsis (...) */
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .modal__image {
+        max-width: 92vw;
+    }
+    .modal__caption {
+        max-width: 100%;
+        text-overflow: ellipsis;
+    }
+    .modal__close-btn_type_preview {
+        margin: 0;
     }
 }
 
