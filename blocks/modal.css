@@ -175,11 +175,20 @@
     opacity: 40%;
     border-radius: 8px;
     border: 1px solid rgba(33, 33, 33, 40%);
+    margin-bottom: 0;
     cursor: pointer;
+}
+
+.modal__input_type_error {
+    border: 1px solid;
+    color: rgba(255, 0, 0, 0.8);
 }
 
 .modal__input:hover {
     opacity: 1;
+}
+.modal__error {
+    margin-top: 8px;
 }
 
 .modal__submit-btn {
