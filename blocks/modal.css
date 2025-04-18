@@ -180,7 +180,9 @@
 }
 
 .modal__input_type_error {
-    border: 1px solid;
+    border: 1px solid rgba(255, 0, 0, 0.8);
+}
+.modal__error {
     color: rgba(255, 0, 0, 0.8);
 }
 
@@ -200,6 +202,11 @@
     line-height: 16px;
     background-color: #212121;
     border-radius: 8px;
+}
+
+.modal__button_disabled {
+    color: #fff;
+    opacity: 50%;
 }
 
 @media screen and (max-width: 627px) {
