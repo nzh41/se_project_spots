@@ -2,28 +2,28 @@ const settings = {
     formSelector: ".modal__form",
     inputSelector: ".modal__input",
     submitButtonSelector: ".modal__submit-btn",
-    inactiveButtonClass: "modal__button_disabled",
+    inactiveButtonClass: "modal__submit-btn_disabled",
     inputErrorClass: "modal__input_type_error",
     errorClass: "modal__error_visible",
 };
 
-const showInputError = (formEl, inputEl, errorMsg) => {
+const showInputError = (formEl, inputEl, errorMsg, config) => {
     const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
     errorMsgEl.textContent = errorMsg;
-    inputEl.classList.add(settings.inputErrorClass);
+    inputEl.classList.add(config.inputErrorClass);
 };
 
-const hideInputError = (formEl, inputEl) => {
+const hideInputError = (formEl, inputEl, config) => {
     const errorMsgEl = formEl.querySelector(`#${inputEl.id}-error`);
     errorMsgEl.textContent = "";
-    inputEl.classList.remove(settings.inputErrorClass);
+    inputEl.classList.remove(config.inputErrorClass);
 };
 
-const checkInputValidity = (formEl, inputEl) => {
+const checkInputValidity = (formEl, inputEl, config) => {
     if (!inputEl.validity.valid) {
-        showInputError(formEl, inputEl, inputEl.validationMessage);
+        showInputError(formEl, inputEl, inputEl.validationMessage, config);
     } else {
-        hideInputError(formEl, inputEl);
+        hideInputError(formEl, inputEl, config);
     }
 };
 
@@ -46,9 +46,9 @@ const disableButton = (buttonEl, config) => {
     buttonEl.classList.add(config.inactiveButtonClass);
 };
 
-const resetValidation = (formEl, inputList) => {
+const resetValidation = (formEl, inputList, config) => {
     inputList.forEach((input) => {
-        hideInputError(formEl, input);
+        hideInputError(formEl, input, config);
     });
 };
 
@@ -67,7 +67,7 @@ const setEventListeners = (formEl, config) => {
 
     inputList.forEach((inputEl) => {
         inputEl.addEventListener("input", function () {
-            checkInputValidity(formEl, inputEl);
+            checkInputValidity(formEl, inputEl, config);
             toggleButtonState(inputList, buttonElement, config);
         });
     });
