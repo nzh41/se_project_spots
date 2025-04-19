@@ -177,6 +177,7 @@
     border: 1px solid rgba(33, 33, 33, 40%);
     margin-bottom: 0;
     cursor: pointer;
+    color: #212121;
 }
 
 .modal__input_type_error {

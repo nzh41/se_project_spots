@@ -29,36 +29,34 @@ const editModalBtn = document.querySelector(".profile__edit-btn");
 const cardModalBtn = document.querySelector(".profile__add-btn");
 
 const profileName = document.querySelector(".profile__name");
-
 const profileDescription = document.querySelector(".profile__description");
 
 const editModal = document.querySelector("#edit-modal");
-
-const editFormElement = editModal.querySelector(".modal__form");
+const cardModal = document.querySelector("#add-card-modal");
+const previewModal = document.querySelector("#preview-modal");
 
 const editModalCloseBtn = editModal.querySelector(".modal__close-btn");
+const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
+const previewModalCloseBtn = previewModal.querySelector(
+    ".modal__close-btn_type_preview"
+);
+
+const editFormElement = editModal.querySelector(".modal__form");
+const cardFormElement = cardModal.querySelector(".modal__form");
 
 const editModalNameInput = editModal.querySelector("#profile-name-input");
-
 const editModalDescriptionInput = editModal.querySelector(
     "#profile-description-input"
 );
 
+const cardNameInput = cardModal.querySelector("#add-card-name-input");
+const cardLinkInput = cardModal.querySelector("#add-card-link-input");
+
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
-const cardModal = document.querySelector("#add-card-modal");
-const cardFormElement = cardModal.querySelector(".modal__form");
-const cardSubmitBtn = cardModal.querySelector("modal__submit-btn");
-const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
-const cardNameInput = cardModal.querySelector("#add-card-name-input");
-const cardLinkInput = cardModal.querySelector("#add-card-link-input");
-const previewModal = document.querySelector("#preview-modal");
 const previewModalEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
-const previewModalCloseBtn = previewModal.querySelector(
-    ".modal__close-btn_type_preview"
-);
 
 function openModal(modal) {
     // Refactored this code to the editModalBtn function with eventlistener
@@ -71,59 +69,61 @@ function closeModal(modal) {
     modal.classList.remove("modal_opened");
 }
 
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        const openedModal = document.querySelector(".modal.modal_opened");
+        if (openedModal) {
+            closeModal(openedModal);
+        }
+    }
+});
+
 function handleEditFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = editModalNameInput.value;
     profileDescription.textContent = editModalDescriptionInput.value;
-    disableButton(cardSubmitBtn);
     closeModal(editModal);
 }
 
 function handleAddCardSubmit(evt) {
     evt.preventDefault();
-    console.log(cardNameInput.value);
-    console.log(cardLinkInput.value);
-    const inputValue = { name: cardNameInput.value, link: cardLinkInput.value };
-    const cardEl = getCardElement(inputValue);
+    const newCard = {
+        name: cardNameInput.value,
+        link: cardLinkInput.value,
+    };
+    const cardEl = getCardElement(newCard);
     cardsList.prepend(cardEl);
     evt.target.reset();
     closeModal(cardModal);
 }
 
 function getCardElement(data) {
-    console.log(data);
     const cardElement = cardTemplate.content
         .querySelector(".card")
         .cloneNode(true);
-
     const cardNameEl = cardElement.querySelector(".card__title");
     const cardImgEl = cardElement.querySelector(".card__image");
-    //declaring variable of the Delete button
-
     const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
+    const cardLikeBtn = cardElement.querySelector(".card__like-btn");
 
-    //declaring variable to keeping the button active in eventlistener below
-    const cardLikedBtn = cardElement.querySelector(".card__like-btn");
-    //Keeping the buttons active when clicking for Liked in the cards
-    cardLikedBtn.addEventListener("click", () => {
-        cardLikedBtn.classList.toggle("card__like-btn-liked");
+    cardImgEl.src = data.link;
+    cardImgEl.alt = data.name;
+    cardNameEl.textContent = data.name;
+
+    cardLikeBtn.addEventListener("click", () => {
+        cardLikeBtn.classList.toggle("card__like-btn-liked");
     });
 
-    cardImgEl.addEventListener("click", () => {
-        openModal(previewModal);
-        previewModalEl.src = data.link;
-        previewModalEl.alt = data.name;
-        previewModalCaptionEl.textContent = data.name;
-    });
-
-    //create a event as a paramater event.target.closest search card  .remove
     cardDeleteBtn.addEventListener("click", () => {
         cardElement.remove();
     });
 
-    cardNameEl.textContent = data.name;
-    cardImgEl.src = data.link;
-    cardImgEl.alt = data.name;
+    cardImgEl.addEventListener("click", () => {
+        previewModalEl.src = data.link;
+        previewModalEl.alt = data.name;
+        previewModalCaptionEl.textContent = data.name;
+        openModal(previewModal);
+    });
 
     return cardElement;
 }
