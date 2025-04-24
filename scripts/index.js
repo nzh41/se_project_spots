@@ -1,3 +1,5 @@
+// const { resetValidation } = require("./validation.js");
+// //
 const initialCards = [
     {
         name: "Val Thorens",
@@ -58,25 +60,24 @@ const cardsList = document.querySelector(".cards__list");
 const previewModalEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 
-function openModal(modal) {
-    // Refactored this code to the editModalBtn function with eventlistener
-    // editModalNameInput.value = profileName.textContent;
-    // editModalDescriptionInput.value = profileDescription.textContent;
-    modal.classList.add("modal_opened");
-}
-
-function closeModal(modal) {
-    modal.classList.remove("modal_opened");
-}
-
-document.addEventListener("keydown", (event) => {
+function handleEscClose(event) {
     if (event.key === "Escape") {
         const openedModal = document.querySelector(".modal.modal_opened");
         if (openedModal) {
             closeModal(openedModal);
         }
     }
-});
+}
+
+function openModal(modal) {
+    modal.classList.add("modal_opened");
+    document.addEventListener("keydown", handleEscClose);
+}
+
+function closeModal(modal) {
+    modal.classList.remove("modal_opened");
+    document.removeEventListener("keydown", handleEscClose);
+}
 
 function handleEditFormSubmit(evt) {
     evt.preventDefault();
@@ -93,7 +94,15 @@ function handleAddCardSubmit(evt) {
     };
     const cardEl = getCardElement(newCard);
     cardsList.prepend(cardEl);
-    evt.target.reset();
+    // evt.target.reset();
+    //
+    cardsList.prepend(cardEl);
+    cardFormElement.reset();
+    disableButton(
+        cardFormElement.querySelector(settings.submitButtonSelector),
+        settings
+    );
+    //
     closeModal(cardModal);
 }
 
@@ -134,6 +143,13 @@ previewModalCloseBtn.addEventListener("click", () => {
 editModalBtn.addEventListener("click", () => {
     editModalNameInput.value = profileName.textContent;
     editModalDescriptionInput.value = profileDescription.textContent;
+    //
+    resetValidation(
+        editFormElement,
+        [editModalDescriptionInput, editModalNameInput],
+        settings
+    );
+    //
     openModal(editModal);
 });
 
@@ -142,6 +158,10 @@ editModalCloseBtn.addEventListener("click", () => {
 });
 
 cardModalBtn.addEventListener("click", () => {
+    //
+    cardFormElement.reset();
+    resetValidation(cardFormElement, [cardLinkInput, cardNameInput], settings);
+    //
     openModal(cardModal);
 });
 
