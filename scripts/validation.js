@@ -37,8 +37,6 @@ const toggleButtonState = (inputList, buttonEl, config) => {
         buttonEl.disabled = false;
         buttonEl.classList.remove(config.inactiveButtonClass);
     }
-    // add the css class for btn submit to be true
-    // add a modifier class to the buttonEl to make it grey
 };
 
 const disableButton = (buttonEl, config) => {
@@ -47,19 +45,12 @@ const disableButton = (buttonEl, config) => {
 };
 
 const resetValidation = (formEl, inputList, config) => {
-    //
-    // const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
     const buttonElement = formEl.querySelector(config.submitButtonSelector);
-    //
     inputList.forEach((input) => {
         hideInputError(formEl, input, config);
     });
-    //
     toggleButtonState(inputList, buttonElement, config);
-    //
 };
-
-//todo . use the setting object instead of hard coding strings
 
 const setEventListeners = (formEl, config) => {
     const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
@@ -89,6 +80,3 @@ const enableValidation = (config) => {
 };
 
 enableValidation(settings);
-
-// exports { enableValidation, resetValidation , disableButton, settings };
-//

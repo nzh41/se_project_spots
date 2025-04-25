@@ -1,5 +1,3 @@
-// const { resetValidation } = require("./validation.js");
-// //
 const initialCards = [
     {
         name: "Val Thorens",
@@ -94,15 +92,12 @@ function handleAddCardSubmit(evt) {
     };
     const cardEl = getCardElement(newCard);
     cardsList.prepend(cardEl);
-    // evt.target.reset();
-    //
     cardsList.prepend(cardEl);
     cardFormElement.reset();
     disableButton(
         cardFormElement.querySelector(settings.submitButtonSelector),
         settings
     );
-    //
     closeModal(cardModal);
 }
 
@@ -143,13 +138,11 @@ previewModalCloseBtn.addEventListener("click", () => {
 editModalBtn.addEventListener("click", () => {
     editModalNameInput.value = profileName.textContent;
     editModalDescriptionInput.value = profileDescription.textContent;
-    //
     resetValidation(
         editFormElement,
         [editModalDescriptionInput, editModalNameInput],
         settings
     );
-    //
     openModal(editModal);
 });
 
@@ -158,10 +151,6 @@ editModalCloseBtn.addEventListener("click", () => {
 });
 
 cardModalBtn.addEventListener("click", () => {
-    //
-    cardFormElement.reset();
-    resetValidation(cardFormElement, [cardLinkInput, cardNameInput], settings);
-    //
     openModal(cardModal);
 });
 
@@ -170,15 +159,6 @@ cardModalCloseBtn.addEventListener("click", () => {
 });
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
-
-// for (let i = 0; i < initialCards.length; i++) {
-//     const cardElement = getCardElement(initialCards[i]);
-//     cardsList.prepend(cardElement);
-// }
-
-// for (let i = 0; i < initialCards.length; i++) {
-//     cardsList.prepend(getCardElement(initialCards[i]));
-// }
 
 cardFormElement.addEventListener("submit", handleAddCardSubmit);
 
